@@ -1,0 +1,16 @@
+﻿@model QuetionBankApp.Models.QuetionTable
+
+@{
+    ViewBag.Title = "SearchBYKeyword";
+}
+
+<h2>SearchBYKeyword</h2>
+@using (Html.BeginForm())
+{
+    <p>Enter The Question: @Html.EditorFor(m => m.SearchKeyword)  <button>Enter</button></p>
+
+
+}
+
+@Html.ActionLink("Search", "Search", new { }, new { @class = "btn btn-outline-success" })
+

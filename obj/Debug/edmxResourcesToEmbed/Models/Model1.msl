@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuetionBankModelStoreContainer" CdmEntityContainer="QuetionBankEntities">
+    <EntitySetMapping Name="QuetionTables">
+      <EntityTypeMapping TypeName="QuetionBankModel.QuetionTable">
+        <MappingFragment StoreEntitySet="QuetionTable">
+          <ScalarProperty Name="QuetionId" ColumnName="QuetionId" />
+          <ScalarProperty Name="Quetion" ColumnName="Quetion" />
+          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+          <ScalarProperty Name="SubjectType" ColumnName="SubjectType" />
+          <ScalarProperty Name="Option1" ColumnName="Option1" />
+          <ScalarProperty Name="Option2" ColumnName="Option2" />
+          <ScalarProperty Name="Option3" ColumnName="Option3" />
+          <ScalarProperty Name="Option4" ColumnName="Option4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectTables">
+      <EntityTypeMapping TypeName="QuetionBankModel.SubjectTable">
+        <MappingFragment StoreEntitySet="SubjectTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

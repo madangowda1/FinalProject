@@ -1,0 +1,48 @@
+﻿@model List<QuetionBankApp.Models.QuetionTable>
+
+@{
+    ViewBag.Title = "All   Quetions";
+    var count = 1;
+}
+<div>
+    <p>
+        @Html.ActionLink("search by keyword", "SearchBYKeyword", new { }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("ADD A NEW QUETION", "AddNEW", new { }, new { @class = "btn btn-primary" })
+   
+    
+
+    <h2>AllQuetions</h2>
+</div>
+<hr />
+@*@Html.ActionLink("Add New Employee", "AddNew")*@
+
+<div class="container">
+    @foreach (var qn in Model)
+    {
+        <div class="row">
+
+            <h5>@count . @qn.Quetion</h5>
+            <h6 style="color:forestgreen">Answer. @qn.Keyword</h6>
+            <h6>A. @qn.Option1</h6>
+            <h6>B. @qn.Option2 </h6>
+            <h6>C. @qn.Option3 </h6>
+            <h6>D. @qn.Option4</h6>
+
+            <p>
+                @Html.ActionLink("SAVE", "SaveQuestion", new { id = qn.QuetionId }, new { @class = "btn btn-outline-success" })
+                @Html.ActionLink("Update", "ViewRec", new { id = qn.QuetionId }, new { @class = "btn btn-outline-primary" })
+                @*@Html.ActionLink("Delete", "Delete", new { id = qn.QuetionId }, new { @class = "btn btn-outline-danger" })*@
+            </p>
+            @*<p> @Html.ActionLink("search by keyword", "SearchBYKeyword", new { @class = "btn btn-primary" })</p>*@
+
+            <hr />
+        </div>
+        count += 1;
+
+
+    }
+    @Html.ActionLink("View Your Selected Questions", "SavedQuetions", new { }, new { @class = "btn btn-outline-danger" })
+</div>
+
+ 
+

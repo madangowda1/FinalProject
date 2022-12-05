@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuetionBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="QuetionTable">
+    <Key>
+      <PropertyRef Name="QuetionId" />
+    </Key>
+    <Property Name="QuetionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quetion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SubjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Option1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Option2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Option3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Option4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SubjectTable" Relationship="Self.FK_QuetionTable_SubjectTable" FromRole="QuetionTable" ToRole="SubjectTable" />
+  </EntityType>
+  <EntityType Name="SubjectTable">
+    <Key>
+      <PropertyRef Name="Subject" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="QuetionTables" Relationship="Self.FK_QuetionTable_SubjectTable" FromRole="SubjectTable" ToRole="QuetionTable" />
+  </EntityType>
+  <Association Name="FK_QuetionTable_SubjectTable">
+    <End Role="SubjectTable" Type="Self.SubjectTable" Multiplicity="1" />
+    <End Role="QuetionTable" Type="Self.QuetionTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectTable">
+        <PropertyRef Name="Subject" />
+      </Principal>
+      <Dependent Role="QuetionTable">
+        <PropertyRef Name="SubjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuetionBankEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="QuetionTables" EntityType="Self.QuetionTable" />
+    <EntitySet Name="SubjectTables" EntityType="Self.SubjectTable" />
+    <AssociationSet Name="FK_QuetionTable_SubjectTable" Association="Self.FK_QuetionTable_SubjectTable">
+      <End Role="SubjectTable" EntitySet="SubjectTables" />
+      <End Role="QuetionTable" EntitySet="QuetionTables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

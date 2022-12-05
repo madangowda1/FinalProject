@@ -1,0 +1,23 @@
+﻿@model List<QuetionBankApp.Models.QuetionTable>
+
+@{
+    ViewBag.Title = "SavedQuetions";
+    var count = 1;
+}
+
+<h2>SavedQuetions</h2>
+
+@foreach (var qn in Model)
+{
+    <div class="row">
+
+        <h5>@count . @qn.Quetion</h5>
+        <h6>A. @qn.Option1</h6>
+        <h6>B. @qn.Option2 </h6>
+        <h6>C. @qn.Option3 </h6>
+        <h6>D. @qn.Option4</h6>
+        @Html.ActionLink("SAVE", "SaveQuestion", new { id = qn.QuetionId }, new { @class = "btn btn-outline-success" })
+        @Html.ActionLink("Update", "ViewRec", new { id = qn.QuetionId }, new { @class = "btn btn-outline-primary" })
+    </div>
+    count += 1;
+}

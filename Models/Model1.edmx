@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuetionBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="QuetionTable">
+          <Key>
+            <PropertyRef Name="QuetionId" />
+          </Key>
+          <Property Name="QuetionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quetion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Keyword" Type="varchar(max)" Nullable="false" />
+          <Property Name="SubjectType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Option1" Type="varchar(max)" />
+          <Property Name="Option2" Type="varchar(max)" />
+          <Property Name="Option3" Type="varchar(max)" />
+          <Property Name="Option4" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="SubjectTable">
+          <Key>
+            <PropertyRef Name="Subject" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_QuetionTable_SubjectTable">
+          <End Role="SubjectTable" Type="Self.SubjectTable" Multiplicity="1" />
+          <End Role="QuetionTable" Type="Self.QuetionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectTable">
+              <PropertyRef Name="Subject" />
+            </Principal>
+            <Dependent Role="QuetionTable">
+              <PropertyRef Name="SubjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuetionBankModelStoreContainer">
+          <EntitySet Name="QuetionTable" EntityType="Self.QuetionTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectTable" EntityType="Self.SubjectTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_QuetionTable_SubjectTable" Association="Self.FK_QuetionTable_SubjectTable">
+            <End Role="SubjectTable" EntitySet="SubjectTable" />
+            <End Role="QuetionTable" EntitySet="QuetionTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuetionBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="QuetionTable">
+          <Key>
+            <PropertyRef Name="QuetionId" />
+          </Key>
+          <Property Name="QuetionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quetion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Keyword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SubjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Option1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Option2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Option3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Option4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SubjectTable" Relationship="Self.FK_QuetionTable_SubjectTable" FromRole="QuetionTable" ToRole="SubjectTable" />
+        </EntityType>
+        <EntityType Name="SubjectTable">
+          <Key>
+            <PropertyRef Name="Subject" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QuetionTables" Relationship="Self.FK_QuetionTable_SubjectTable" FromRole="SubjectTable" ToRole="QuetionTable" />
+        </EntityType>
+        <Association Name="FK_QuetionTable_SubjectTable">
+          <End Role="SubjectTable" Type="Self.SubjectTable" Multiplicity="1" />
+          <End Role="QuetionTable" Type="Self.QuetionTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectTable">
+              <PropertyRef Name="Subject" />
+            </Principal>
+            <Dependent Role="QuetionTable">
+              <PropertyRef Name="SubjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuetionBankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QuetionTables" EntityType="Self.QuetionTable" />
+          <EntitySet Name="SubjectTables" EntityType="Self.SubjectTable" />
+          <AssociationSet Name="FK_QuetionTable_SubjectTable" Association="Self.FK_QuetionTable_SubjectTable">
+            <End Role="SubjectTable" EntitySet="SubjectTables" />
+            <End Role="QuetionTable" EntitySet="QuetionTables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuetionBankModelStoreContainer" CdmEntityContainer="QuetionBankEntities">
+          <EntitySetMapping Name="QuetionTables">
+            <EntityTypeMapping TypeName="QuetionBankModel.QuetionTable">
+              <MappingFragment StoreEntitySet="QuetionTable">
+                <ScalarProperty Name="QuetionId" ColumnName="QuetionId" />
+                <ScalarProperty Name="Quetion" ColumnName="Quetion" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="SubjectType" ColumnName="SubjectType" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectTables">
+            <EntityTypeMapping TypeName="QuetionBankModel.SubjectTable">
+              <MappingFragment StoreEntitySet="SubjectTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

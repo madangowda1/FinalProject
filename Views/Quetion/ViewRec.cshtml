@@ -1,0 +1,21 @@
+﻿@model QuetionBankApp.Models.QuetionTable
+
+@{
+    ViewBag.Title = "ViewRec";
+}
+<h2>Details of the Question to Edit</h2>
+<hr />
+@using (Html.BeginForm("UpdateRec", "Quetion"))
+{   <p>@Html.HiddenFor(m=>m.QuetionId)</p>
+    <p>Enter The Question: @Html.EditorFor(m => m.Quetion)</p>
+    <p>Enter The subject: @Html.EditorFor(m => m.SubjectType)</p>
+    <p>Enter The Option1: @Html.EditorFor(m => m.Option1)</p>
+    <p>Enter The Option2: @Html.EditorFor(m => m.Option2)</p>
+    <p>Enter The Option3: @Html.EditorFor(m => m.Option3)</p>
+    <p>Enter The Option4: @Html.EditorFor(m => m.Option4)</p>
+    <p>Enter the keyword: @Html.EditorFor(m => m.Keyword)</p>
+    <p>
+        <button>Save Changes</button>
+    </p>
+}
+
