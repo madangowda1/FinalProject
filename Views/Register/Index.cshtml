@@ -1,0 +1,66 @@
+﻿@model MINIMVCPROJECT.Models.UserTable
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (Request.IsAuthenticated)
+{
+    var data = new MINIMVCPROJECT.Models.UserTable();
+   // <h1>Welcome User: <span>@Html.Encode(User.Identity.Name)</span></h1>
+    @Html.ActionLink("Log out", "Logout", null, new { @class = "btn btn-danger" })
+}
+
+<style type="text/css">
+    .ma {
+        font-family: Arial;
+        font-size: 10pt;
+        /*background-color: blue;*/
+        width: 100%;
+        height: 500px;
+        background-size: cover;
+        background-image: url('../../assets/img10.jpg');
+    }
+
+    #mad {
+        background-color: grey;
+    }
+</style>
+<link href="~/MainClass.css" rel="stylesheet" />
+
+<body background="~/travelling.png">
+
+    <div class="data">
+        <nav id="mad" class="navbar navbar-expand-lg w-100 p-3 navbar-light bg-yellow" style="background-color:wheat">
+            <a class="navbar-brand">Fire Blogging</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Signup", "Register", null, new { @class = "btn btn-danger ms-3" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "SignIn", null, new { @class = "btn btn-success ms-3" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("View All Users", "AllUser", null, new { @class = "btn btn-danger ms-3" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("All Blogs", "AllBlogs", "Blog", null, new { @class = "btn btn-danger ms-3" })
+
+                    </li>
+                    <li>
+                        @Html.ActionLink("New Blog", "AddNew", "Blog", null, new { @class = "btn btn-danger ms-3" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Edit Blogs", "DisplayParticularBlogs", "Blog", null, new { @class = "btn btn-danger ms-3" })
+                    </li>
+                </ul>
+            </div>
+            </nav>
+    </div>
+    <div class="ma">
+        
+    </div>
+</body>

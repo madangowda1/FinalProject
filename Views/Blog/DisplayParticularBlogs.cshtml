@@ -1,0 +1,57 @@
+﻿@model List<MINIMVCPROJECT.Models.BlogsTable>
+
+
+@{
+    if (Session["currentUser"] != null)
+    {
+        ViewBag.CurrentUserId = (Session["currentUser"] as MINIMVCPROJECT.Models.UserTable).UserId;
+    }
+
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered table-stripped">
+                @foreach (var item in Model)
+                {
+                    if(ViewBag.CurrentUserId == item.UId)
+                    {
+    <tr>
+        <td>
+            <div>
+                <h2>@item.Messages</h2>
+                <hr />
+                <p>Travel Date</p>
+
+
+                @{
+                    var Mach = @item.TravelDate;
+
+                }
+                <h5>@Mach</h5>
+                <hr />
+                <p>
+                    <img src="@item.Images" style="width:1000px; height:500px" />
+                </p>
+                <p>
+                    @item.Details
+
+                </p>
+                <p>
+                    @*@Html.ActionLink("View More....", "Display", new { id = item.BlogId })*@
+                    @Html.ActionLink("DELETE THIS BLOG", "Delete", new { id = item.BlogId }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Edit ", "ViewRec", new { id = item.BlogId }, new { @class = "btn btn-primary" })
+                </p>
+
+            </div>
+        </td>
+    </tr>
+                    }
+                    }
+            </table>
+        </div>
+    </div>
+</div>

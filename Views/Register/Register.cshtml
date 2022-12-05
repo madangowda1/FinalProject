@@ -1,0 +1,20 @@
+﻿@model MINIMVCPROJECT.Models.UserTable
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Registering New User</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <p>Enter the Name: @Html.EditorFor(m => m.Name)</p>
+    <p>Enter the Address: @Html.EditorFor(m => m.Address)</p>
+    <p>Enter the UserName: @Html.EditorFor(m => m.UserName)</p>
+    <p>Enter the Mobile number: @Html.EditorFor(m => m.MobileNo)</p>
+    <p>Enter the Email: @Html.EditorFor(m => m.Email)</p>
+    <p>Enter the Password: @Html.EditorFor(m => m.Password)</p>
+    
+    <p><button>Save Changes</button></p>
+}
+

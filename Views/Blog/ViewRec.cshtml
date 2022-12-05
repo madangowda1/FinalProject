@@ -1,0 +1,20 @@
+﻿@model MINIMVCPROJECT.Models.BlogsTable
+
+@{
+    ViewBag.Title = "ViewRec";
+}
+
+<h2>Details of the Blog to Edit</h2>
+<hr />
+@using (Html.BeginForm("UpdateRec", "Blog"))
+{
+    <p> @Html.HiddenFor(m => m.BlogId)</p>
+    <p>Title: @Html.EditorFor(m => m.Messages)</p>
+    <p>Travel Date: @Html.EditorFor(m => m.TravelDate)</p>
+    <p>Image: @Html.EditorFor(m => m.Images)</p>
+    <p>Details: @Html.EditorFor(m => m.Details)</p>
+    <p>
+        <button>Save Changes</button>
+    </p>
+}
+

@@ -1,0 +1,37 @@
+﻿@model List<MINIMVCPROJECT.Models.UserTable>
+
+@{
+    ViewBag.Title = "AllUser";
+}
+
+<h1 style="color:blueviolet">List of users with Us</h1>
+<hr />
+
+<table class="table table-bordered" border="1">
+    <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>User Address</th>
+        <th>UserName</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.UserId</td>
+            <td>@user.Name</td>
+            <td>@user.Address</td>
+            <td>@user.UserName</td>
+            <td>@user.MobileNo</td>
+            <td>@user.Email</td>
+            <td>@user.Password</td>
+            <td >
+                <p style="color:orangered" > @Html.ActionLink("Edit", "ViewRec", new { id = user.UserId })</p>
+               <p style="color:red"> @Html.ActionLink("X", "UpdateRec", new { id = user.UserId })</p>
+            </td>
+        </tr>
+    }
+</table>
+

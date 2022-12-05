@@ -1,0 +1,41 @@
+﻿@model MINIMVCPROJECT.Models.BlogsTable
+
+@{
+    ViewBag.Title = "AddNew";
+
+}
+
+
+    <h2>Post UR Blog Here!!!</h2>
+    <hr />
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                @Html.HiddenFor(m => m.UId)
+                <p>
+                    Enter the Title: @Html.EditorFor(m => m.Messages)
+                </p>
+                <p>
+                    Enter the Details: @Html.EditorFor(m => m.Details)
+                </p>
+
+                <p>
+                    Enter the image: @Html.EditorFor(m => m.Images)
+                </p>
+                <p>
+                    Enter the UserId: @Html.EditorFor(m => m.UId)
+                </p>
+                <p>
+                    Enter the Date:
+                    @Html.EditorFor(model => model.TravelDate)
+
+                </p>
+                <button>Save Changes</button>
+                </div>
+               
+                    }
+                </div>
+            
+
+

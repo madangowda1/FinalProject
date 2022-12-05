@@ -1,0 +1,43 @@
+﻿@model MINIMVCPROJECT.Models.UserTable
+
+@{
+    ViewBag.Title = "SignIn";
+
+    
+            {
+
+            }
+}
+<div style="color:red;font-display:auto">
+    @if (TempData["ErrorInfo"] != null)
+            {
+                <p>@TempData["ErrorInfo"]</p>
+            }
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Please provide Credentials here!!</h2>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                <p>
+                    UserName: @Html.Editor("username")
+                </p>
+                <p>
+                    Password: @Html.Password("password")
+                </p>
+                <p>
+                    <button>Login</button>
+                </p>
+            }
+        </div>
+        <div style="color:blue">
+            @if (ViewBag.ErrorInfo != null)
+            {
+                <p>@ViewBag.ErrorInfo</p>
+            }
+        </div>
+    </div>
+</div>
